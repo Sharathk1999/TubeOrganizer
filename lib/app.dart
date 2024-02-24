@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tube_organize/core/color_scheme.dart';
+import 'package:tube_organize/views/home_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -7,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Tube Organize',
       theme: ThemeData(
         colorScheme: lightColorScheme,
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: darkColorScheme,
         useMaterial3: true,
       ),
-      home: const Scaffold(),
+      home: const HomeScreen(),
     );
   }
 }
