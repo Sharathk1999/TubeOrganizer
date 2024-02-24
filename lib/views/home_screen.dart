@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tube_organize/core/colors.dart';
+import 'package:tube_organize/views/create_folder.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,7 +17,9 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Theme.of(context).colorScheme.onPrimary,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CreateFolderScreen(),),);
+        },
         child:  Icon(
           CupertinoIcons.add_circled_solid,
           color: Theme.of(context).colorScheme.primary,
