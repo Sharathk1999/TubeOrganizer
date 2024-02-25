@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "783107465171",
+    "project_id": "tube-organize",
+    "storage_bucket": "tube-organize.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783107465171:android:5da1b91a6426913ff7d926",
+        "android_client_info": {
+          "package_name": "com.example.tube_organize"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1NUdwufxoyl0fDkySD9TTyGsSvc9ZNOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

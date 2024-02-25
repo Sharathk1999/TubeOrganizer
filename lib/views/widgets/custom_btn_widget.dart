@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+
+class CustomBtnWidget extends StatelessWidget {
+  const CustomBtnWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.onPrimary,
+        border: Border.all(
+          width: 0.8,
+          color: Theme.of(context).colorScheme.primary,
+        ),
+        borderRadius: BorderRadius.circular(
+          10,
+        ),
+      ),
+      child: Center(
+        child: Text(
+          "Create",
+          style: TextStyle(
+            fontFamily: 'Raleway',
+            color: Theme.of(context).colorScheme.primary,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
+}

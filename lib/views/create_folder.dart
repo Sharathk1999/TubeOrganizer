@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tube_organize/core/colors.dart';
+import 'package:tube_organize/views/widgets/custom_btn_widget.dart';
 
 class CreateFolderScreen extends StatefulWidget {
   const CreateFolderScreen({super.key});
@@ -89,23 +90,7 @@ class _CreateFolderScreenState extends State<CreateFolderScreen> {
               ),
             ),
             const SizedBox(height: 25,),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onPrimary,
-                border: Border.all(width: 0.8,color: Theme.of(context).colorScheme.primary,),
-                borderRadius: BorderRadius.circular(10,),
-              ),
-              child: Center(
-                child: Text("Create",style: TextStyle(
-                fontFamily: 'Raleway',
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),),
-              ),
-            )
+            const CustomBtnWidget(),
           ],
         ),
       ),
