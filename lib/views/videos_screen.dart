@@ -81,6 +81,7 @@ class _VideosScreenState extends State<VideosScreen> {
                                   width: 1.8,
                                   color: Theme.of(context).colorScheme.primary),
                               borderRadius: BorderRadius.circular(15),
+                              color: Colors.transparent
                             ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(15),
@@ -112,13 +113,15 @@ class _VideosScreenState extends State<VideosScreen> {
                   );
                 },
               )
-            : Center(
+            : const Center(
                 child: StrokeText(
                   text: "Add Videos..",
+                  
                   textStyle: TextStyle(
+                    letterSpacing: 1,
                       fontFamily: "Raleway",
-                      fontSize: 25,
-                      color: Theme.of(context).colorScheme.primary),
+                      fontSize: 20,
+                      color: Colors.white),
                   strokeColor: Colors.black,
                   strokeWidth: 2,
                 ),
