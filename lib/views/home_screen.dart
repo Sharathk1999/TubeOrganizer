@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:stroke_text/stroke_text.dart';
 import 'package:tube_organize/core/colors.dart';
 import 'package:tube_organize/services/firebase_services.dart';
 import 'package:tube_organize/views/create_folder.dart';
+import 'package:tube_organize/views/videos_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Stream? folderStream;
 
   //load all folders on screen init
-  loadAllFolders()async{
+  loadAllFolders() async {
     folderStream = await FirebaseServicesMethods().getAllFolders();
     setState(() {});
   }
@@ -34,63 +36,85 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, snapshot) {
         return snapshot.hasData
             ? ListView.builder(
-              shrinkWrap: true,
-              padding: const EdgeInsets.all(5),
-              itemCount: snapshot.data.docs.length,
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(5),
+                itemCount: snapshot.data.docs.length,
                 itemBuilder: (context, index) {
                   DocumentSnapshot docSnap = snapshot.data.docs[index];
-                  return Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: Image.network(
-                                docSnap["image"],
-                                height: 70,
-                                width: 70,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              children: [
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width / 1.5,
-                                  child:  Text(
-                                    docSnap["folder_name"],
-                                    style:const TextStyle(
-                                      fontFamily: 'Raleway',
-                                      color: txtBlackColor,
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width / 1.5,
-                                  child:  Text(
-                                    "videos (${docSnap["video_count"]})",
-                                    style:const TextStyle(
-                                      color: txtBlueGreyColor,
-                                      fontSize: 15.0,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => VideosScreen(
+                          id: docSnap["id"],
+                          name: docSnap["folder_name"],
+                          imgUrl: docSnap["image"],
+                          count: docSnap["video_count"],
                         ),
+                      ));
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.network(
+                              docSnap["image"],
+                              height: 70,
+                              width: 70,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            children: [
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 1.5,
+                                child: Text(
+                                  docSnap["folder_name"],
+                                  style: const TextStyle(
+                                    fontFamily: 'Raleway',
+                                    color: txtBlackColor,
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 1.5,
+                                child: Text(
+                                  "videos (${docSnap["video_count"]})",
+                                  style: const TextStyle(
+                                    color: txtBlueGreyColor,
+                                    fontSize: 15.0,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   );
                 },
               )
-            : Container();
+            :  Center(
+                child: StrokeText(
+                  text: "No folders yet...",
+                  textStyle: TextStyle(
+                      fontFamily: "Raleway",
+                      fontSize: 25,
+                      color: Theme.of(context).colorScheme.primary),
+                  strokeColor: Colors.black,
+                  strokeWidth: 5,
+                ),
+              );
       },
     );
   }
@@ -160,11 +184,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: const Column(
                     children: [
                       Text(
-                        "Hi, Sharath Kumar 🖐️",
+                        "Your Pocket Playlist Organizer 🖐️",
                         style: TextStyle(
                           fontFamily: 'Raleway',
                           color: txtWhiteColor,
-                          fontSize: 22.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
